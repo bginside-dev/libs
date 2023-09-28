@@ -1,5 +1,12 @@
 # empire-api
 
+## 0.0.8
+
+### Patch Changes
+
+-   2
+-   bf273d8: 8
+
 ## 0.0.7
 
 ### Patch Changes
