@@ -1,11 +1,14 @@
 {
-  "name": "@empire/api",
+  "name": "empire-api",
   "version": "0.0.1",
   "description": "",
   "private": false,
   "main": "./dist/index.js",
   "modules:": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc",
@@ -23,5 +26,16 @@
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.5"
-  }
+  },
+  "dependencies": {
+    "prettier": "^2.8.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bludvikk/empire-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bludvikk/empire-api/issues"
+  },
+  "homepage": "https://github.com/Bludvikk/empire-api#readme"
 }
