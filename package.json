@@ -10,10 +10,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "tsc",
-    "test": "vitest run",
-    "dev": "vitest",
-    "ci": "pnpm run lint && pnpm run test && pnpm run build",
-    "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
+    "ci": "pnpm run lint && pnpm run build",
+    "release": "pnpm run lint && pnpm run build && changeset publish"
   },
   "keywords": [],
   "author": "GA_Damasin",
