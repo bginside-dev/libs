@@ -1,6 +1,6 @@
 {
   "name": "empire-api",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "private": false,
   "main": "index.ts",
@@ -8,7 +8,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup src/",
+    "build": "tsc",
     "lint": "tsc",
     "test": "vitest run",
     "dev": "vitest",
@@ -45,6 +45,6 @@
   },
   "homepage": "https://github.com/Bludvikk/empire-api#readme",
   "files": [
-    "dist/**/*"
+    "lib/**/*"
   ]
 }
