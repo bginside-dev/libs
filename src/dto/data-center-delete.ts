@@ -1,8 +1,4 @@
 import { createZodDto } from 'nestjs-zod';
-import { z } from 'nestjs-zod/z';
-
-export const DataCenterDeleteSchema = z.object({
-  key: z.string(),
-});
+import { DataCenterDeleteSchema } from '../schema/data-center-common';
 
 export class DataCenterDeleteDto extends createZodDto(DataCenterDeleteSchema) {}

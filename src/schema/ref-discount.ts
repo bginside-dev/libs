@@ -1,5 +1,5 @@
 import { z } from "nestjs-zod/z";
-import { DataCenterBaseSchema } from "./data-center-base";
+import { DataCenterBaseSchema } from "./data-center-common";
 
 export const RefDiscountSchema = DataCenterBaseSchema.extend({
     discRate: z.number().default(0).optional(),

@@ -1,8 +1,6 @@
 import { createZodDto } from 'nestjs-zod';
-import { z } from 'nestjs-zod/z';
+import { DataCenterPostSchema } from '../schema/data-center-common';
 
-export const DataCenterPostSchema = z.object({
-  values: z.string(),
-});
+
 
 export class DataCenterPostDto extends createZodDto(DataCenterPostSchema) {}

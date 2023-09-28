@@ -6,3 +6,21 @@ export const DataCenterBaseSchema = z.object({
     default: z.boolean().default(false),
     active: z.boolean().default(true),
 });
+
+export const DataCenterDeleteSchema = z.object({
+    key: z.string(),
+});
+
+export const DataCenterPostSchema = z.object({
+    values: z.string(),
+});
+
+export const DataCenterPutSchema = z.object({
+    key: z.string(),
+    values: z.string(),
+});
+
+export const ValidatePostSchema = z.object({
+    value: z.string(),
+    path: z.string(),
+});
