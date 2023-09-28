@@ -10,5 +10,3 @@ export type RefTerms = PrettifyClass<dto.RefTermsDto>
 export type RefPayment = PrettifyClass<dto.RefPaymentDto>
 export type RefCategory = PrettifyClass<dto.RefCategoryDto>
 export type RefDiscount = PrettifyClass<dto.RefDiscountDto>
-
-

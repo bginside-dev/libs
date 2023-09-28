@@ -1,5 +1,18 @@
 # empire-api
 
+## 0.0.6
+
+### Patch Changes
+
+-   s
+
+## 0.0.5
+
+### Patch Changes
+
+-   d6c0a6f: test
+-   6
+
 ## 0.0.5
 
 ### Patch Changes
