@@ -3,6 +3,6 @@ import { describe, expect, it } from 'vitest'
 
 describe("Empire Query", () => {
     it("should create empire-query", () => {
-        expect(1).toBe(1);
+        expect(2).toBe(2);
     })
 })
