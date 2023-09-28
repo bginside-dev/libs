@@ -1,6 +1,6 @@
 import * as dto from "../dto"
 
-type PrettifyClass<T> = {
+export type PrettifyClass<T> = {
     [K in keyof T]: T[K]
   } & {}
 
