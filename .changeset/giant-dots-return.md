@@ -2,4 +2,4 @@
 'empire-api': patch
 ---
 
-yes
+'complete types'

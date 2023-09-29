@@ -1,5 +1,12 @@
 # empire-api
 
+## 0.0.10
+
+### Patch Changes
+
+-   s
+-   6607f24: yes
+
 ## 0.0.9
 
 ### Patch Changes
