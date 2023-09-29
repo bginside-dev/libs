@@ -1,5 +1,17 @@
 # empire-api
 
+## 0.1.2
+
+### Patch Changes
+
+-   api service
+
+## 0.1.1
+
+### Patch Changes
+
+-   3b0d293: 'yeps'
+
 ## 0.1.0
 
 ### Minor Changes
