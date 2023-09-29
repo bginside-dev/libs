@@ -1,5 +1,15 @@
 # empire-api
 
+## 0.1.0
+
+### Minor Changes
+
+-   6151599: 'apiservice'
+
+### Patch Changes
+
+-   75cae23: 'complete types'
+
 ## 0.0.11
 
 ### Patch Changes
