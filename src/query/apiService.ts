@@ -8,20 +8,26 @@ interface ApiResponse<T> {
 
 export class ApiService {
   private apiKey: string;
+  private businessCode: string; // Add business code property
 
-  constructor(apiKey: string) {
+  constructor(apiKey: string, businessCode: string) {
     this.apiKey = apiKey;
+    this.businessCode = businessCode; // Initialize business code
   }
 
-  private async Request<T>(method: string, path: string, params?: Record<string, any>): Promise<ApiResponse<T>> {
+  private async request<T>(method: string, path: string, params?: Record<string, any>): Promise<ApiResponse<T>> {
     try {
+      const url = `http://localhost:4000/api/empire-core/data-center${path}`;
+      const headers = {
+        Authorization: `Bearer ${this.apiKey}`,
+        'x-business-code': this.businessCode, // Add the business code header
+      };
+
       const response: AxiosResponse<T> = await axios.request({
         method,
-        url: `http://localhost:4000/api/empire-core/data-center${path}`,
+        url,
         params,
-        headers: {
-          Authorization: `Bearer ${this.apiKey}`, // Add the API key as a bearer token
-        },
+        headers,
       });
 
       return {
@@ -39,6 +45,6 @@ export class ApiService {
   }
 
   async get<T>(path: string, params?: Record<string, any>): Promise<ApiResponse<T>> {
-    return this.Request<T>('GET', path, params);
+    return this.request<T>('GET', path, params);
   }
 }
