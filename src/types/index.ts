@@ -14,6 +14,7 @@ export type RefTerms = Prettify<dto.RefTermsDto>
 export type RefPayment = Prettify<dto.RefPaymentDto>
 export type RefCategory = Prettify<dto.RefCategoryDto>
 export type RefDiscount = Prettify<dto.RefDiscountDto>
+export type DataCenterBase = Prettify<dto.DataCenterBaseDto>
 export type PortalAuth = {
   businessCode: string,
   locationCode: string,

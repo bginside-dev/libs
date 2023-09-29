@@ -7,3 +7,4 @@ export { RefPaymentDto } from './ref-payment';
 export { RefCategoryDto } from './ref-category';
 export { RefTermsDto } from './ref-terms';
 export { DataCenterPrismaQueryDto } from './data-center-query'
+export { DataCenterBaseDto } from './data-center-base'
