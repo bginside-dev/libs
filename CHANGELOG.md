@@ -1,5 +1,12 @@
 # empire-api
 
+## 0.1.5
+
+### Patch Changes
+
+-   05af08d: 'headers'
+-   api
+
 ## 0.1.4
 
 ### Patch Changes
