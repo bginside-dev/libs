@@ -1,3 +1,4 @@
+import { z } from "zod"
 import * as dto from "../dto"
 
 export type Prettify<T> = {
@@ -20,3 +21,30 @@ export type PortalAuth = {
   locationCode: string,
   app: 'empire' | 'empire-core'
 }
+
+export interface EmpireApiServiceConfig {
+  apiKey: string;
+  businessCode: string;
+}
+
+
+// libs --> TODO
+export const DATACENTER_TABLES = [
+  'brand',
+  'division',
+  'family',
+  'generic-type',
+  'uom',
+  'bank',
+  'card-type',
+  'shipping-method',
+  'category',
+  'payment',
+  'discount',
+  'terms',
+  'supplier-class',
+  'supplier-group',
+] as const;
+
+
+export const DataCenterPath = z.enum([...DATACENTER_TABLES]);

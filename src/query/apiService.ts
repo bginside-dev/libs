@@ -1,75 +1,73 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { Method, AxiosError, AxiosResponse, isAxiosError, AxiosHeaders } from 'axios';
+import { ApiContract } from './contract';
+import { initClient } from '@ts-rest/core';
 
-interface ApiResponse<T> {
-  data: T | null;
-  status: number;
-  message?: string;
+interface EmpireApiServiceConfig {
+    apiKey: string;
+    businessCode: string;
 }
 
-class DataCenterApi {
-  private apiKey: string;
-  private businessCode: string;
+export class EmpireApiService {
+    private apiKey: string;
+    private businessCode: string;
 
-  constructor(apiKey: string, businessCode: string) {
-    this.apiKey = apiKey;
-    this.businessCode = businessCode;
-  }
+    private static classInstance: EmpireApiService;
 
-  private async request<T>(method: string, path: string, params?: Record<string, any>, data?: any): Promise<ApiResponse<T>> {
-    try {
-      const url = `http://localhost:4000/api/empire-core/data-center/${path}`;
-      const headers = {
-        Authorization: `Bearer ${this.apiKey}`,
-        'x-business-code': this.businessCode,
-      };
-
-      const response: AxiosResponse<T> = await axios.request({
-        method,
-        url,
-        params,
-        headers,
-        data,
-      });
-
-      return {
-        data: response.data,
-        status: response.status,
-      };
-    } catch (error) {
-      const errorMessage = (error as Error).message;
-      return {
-        data: null,
-        status: 500,
-        message: errorMessage || 'An error occurred',
-      };
+    constructor(config: EmpireApiServiceConfig) {
+        this.apiKey = config.apiKey;
+        this.businessCode = config.businessCode;
     }
-  }
 
-  async get<T>(path: string, params?: Record<string, any>): Promise<ApiResponse<T>> {
-    return this.request<T>('GET', path, params);
-  }
+    public static initEmpireApiService(config: EmpireApiServiceConfig) {
+        if (!this.classInstance) {
+            this.classInstance = new EmpireApiService(config);
+        }
 
-  async create<T>(path: string, data: any, params?: Record<string, any>): Promise<ApiResponse<T>> {
-    return this.request<T>('POST', path, params, data);
-  }
+        return this.classInstance;
+    }
 
-  async update<T>(path: string, data: any, params?: Record<string, any>): Promise<ApiResponse<T>> {
-    return this.request<T>('PUT', path, params, data);
-  }
+    get gateway() {
+        return initClient(ApiContract, {
+            baseUrl: '',
+            baseHeaders: {
+                Authorization: `Bearer ${this.apiKey}`,
+                'x-business-code': this.businessCode
+            },
+            api: async ({ body, headers, method, path, signal,      }) => {
+                // return tsRestFetchApi({});
+                // const businessCode = headers.businessCode;
 
-  async delete<T>(path: string, params?: Record<string, any>): Promise<ApiResponse<T>> {
-    return this.request<T>('DELETE', path, params);
-  }
-}
+                const xheaders = new Headers();
+                let urlPath = path // ---> '/empire-core/item/'
 
-export class ApiService {
-  datacenter: DataCenterApi;
-  // supplier: DataCenterApi;
-  // customer: DataCenterApi;
+               
 
-  constructor(apiKey: string, businessCode: string) {
-    this.datacenter = new DataCenterApi(apiKey, businessCode);
-    // this.supplier = new DataCenterApi(apiKey, businessCode);
-    // this.customer = new DataCenterApi(apiKey, businessCode);
-  }
+                if (headers.path) {
+                    urlPath = '/empire-core/data-center/' + headers.path
+                }
+                
+
+
+
+                try {
+                    const result = await axios.request({
+                        method: method as Method,
+                        url: `http://localhost:4000/api${urlPath}`,
+                        headers,
+                        data: body,
+                        signal,
+                    });
+
+                    return { status: result.status, body: result.data, headers: xheaders, signal: result.config.signal };
+                } catch (e: Error | AxiosError | any) {
+                    if (isAxiosError(e)) {
+                        const error = e as AxiosError;
+                        const response = error.response as AxiosResponse;
+                        return { status: response.status, body: response.data, headers: xheaders };
+                    }
+                    throw e;
+                }
+            },
+        });
+    }
 }

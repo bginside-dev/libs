@@ -1,4 +1,4 @@
-import { z } from 'nestjs-zod/z';
+import { z } from 'zod';
 
 export const DataCenterBaseSchema = z.object({
     code: z.string().min(1, { message: 'Code is too short' }).max(30, { message: 'Code is too long.' }),
@@ -6,6 +6,8 @@ export const DataCenterBaseSchema = z.object({
     default: z.boolean().default(false),
     active: z.boolean().default(true),
 });
+
+
 
 export const DataCenterDeleteSchema = z.object({
     key: z.string(),
