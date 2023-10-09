@@ -1,4 +1,4 @@
-import { z } from "nestjs-zod/z";
+import { z } from 'zod'
 import { DataCenterBaseSchema } from "./data-center-common";
 
 export const RefPaymentSchema = DataCenterBaseSchema.extend({

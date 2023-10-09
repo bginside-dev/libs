@@ -36,19 +36,12 @@ export class EmpireApiService {
             api: async ({ body, headers, method, path, signal,      }) => {
                 // return tsRestFetchApi({});
                 // const businessCode = headers.businessCode;
-
                 const xheaders = new Headers();
                 let urlPath = path // ---> '/empire-core/item/'
-
-               
-
                 if (headers.path) {
                     urlPath = '/empire-core/data-center/' + headers.path
                 }
-                
-
-
-
+            
                 try {
                     const result = await axios.request({
                         method: method as Method,
