@@ -10,13 +10,14 @@
   <img src="https://img.shields.io/npm/l/empire-api?color=green" alt="License">
 </p>
 
-
 <!-- Features Section -->
+
 ## Features
 
-- **Cross-Platform Compatibility:** Seamlessly share data structures between backend and front-end.
-- **Type Sharing:** Define and share custom types and schemas.
-- **Schema Management:** Centrally manage schemas and propagate changes.
-- **DTO Generation:** Automatically generate Data Transfer Objects.
-- **Multitenancy Support:** Customize types for multitenancy.
-- **Role-Based Permissions:** Add role-based permissions to your data.
+-   **Cross-Platform Compatibility:** Seamlessly share data structures between backend and front-end.
+-   **Type Sharing:** Define and share custom types and schemas.
+-   **Schema Management:** Centrally manage schemas and propagate changes.
+-   **DTO Generation:** Automatically generate Data Transfer Objects.
+-   **Multitenancy Support:** Customize types for multitenancy.
+-   **Role-Based Permissions:** Add role-based permissions to your data.
+-   TEST
