@@ -20,4 +20,3 @@
 -   **DTO Generation:** Automatically generate Data Transfer Objects.
 -   **Multitenancy Support:** Customize types for multitenancy.
 -   **Role-Based Permissions:** Add role-based permissions to your data.
--   TEST

@@ -1,5 +1,4 @@
-import { z } from 'zod';
-import { RefCategorySchema } from './ref-category';
+import { z } from 'zod'
 
 export const DataCenterBaseSchema = z.object({
     businessCode: z.string(),
@@ -10,24 +9,29 @@ export const DataCenterBaseSchema = z.object({
     active: z.boolean().default(true),
     createdAt: z.date(),
     updatedAt: z.date(),
-});
+})
 
 export const DataCenterDeleteSchema = z.object({
     key: z.string(),
-});
+})
 
-const PostPutDataCenterSchema = DataCenterBaseSchema.omit({id: true,  businessCode: true, updatedAt: true, createdAt: true})
+const PostPutDataCenterSchema = DataCenterBaseSchema.omit({
+    id: true,
+    businessCode: true,
+    updatedAt: true,
+    createdAt: true,
+})
 
 export const DataCenterPostSchema = z.object({
     values: z.string().or(PostPutDataCenterSchema),
-});
+})
 
 export const DataCenterPutSchema = z.object({
     key: z.string(),
     values: z.string().or(PostPutDataCenterSchema),
-});
+})
 
 export const ValidatePostSchema = z.object({
     value: z.string(),
     path: z.string(),
-});
+})

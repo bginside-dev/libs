@@ -1,4 +1,4 @@
-import { initClient, initContract } from '@ts-rest/core';
+import { initClient, initContract } from '@ts-rest/core'
 import {
     ContactDelete,
     ContactDeleteSchema,
@@ -12,18 +12,19 @@ import {
     ValidatePostSchema,
     addressPostDtoSchema,
     supplierSchema,
-} from '../schema';
+} from '../schema'
 import {
     DataCenterBase,
     DataCenterTables,
     RefCategory,
     RefDiscount,
     RefPayment,
+    RefTaxType,
     RefTerms,
     dataCenterHeaderSchema,
     referenceSearchQuerySchema,
-} from '../types/index';
-import { z } from 'zod';
+} from '../types/index'
+import { z } from 'zod'
 import {
     AddressGetResponse,
     AddressResponse,
@@ -37,38 +38,44 @@ import {
     getAddressAsRef,
     getAddressById,
     getContactAsRef,
-} from './objShape';
-import { promises } from 'dns';
-import axios, { Method } from 'axios';
+} from './objShape'
+import { promises } from 'dns'
+import axios, { Method } from 'axios'
+import { ItemPost, itemPostSchema } from '../schema/item'
 
-const c = initContract();
+const c = initContract()
 
 export type DataCenter =
     | {
-          path: 'category';
-          data: RefCategory[];
-          totalCount: number;
+          path: 'category'
+          data: RefCategory[]
+          totalCount: number
       }
     | {
-          path: 'discount';
-          totalCount: number;
-          data: RefDiscount[];
+          path: 'discount'
+          totalCount: number
+          data: RefDiscount[]
       }
     | {
-          path: 'payment';
-          totalCount: number;
-          data: RefPayment[];
+          path: 'payment'
+          totalCount: number
+          data: RefPayment[]
       }
     | {
-          path: 'terms';
-          totalCount: number;
-          data: RefTerms[];
+          path: 'terms'
+          totalCount: number
+          data: RefTerms[]
       }
     | {
-          path: 'common';
-          data: DataCenterBase[];
-          totalCount: number;
-      };
+          path: 'tax-type'
+          totalCount: number
+          data: RefTaxType[]
+      }
+    | {
+          path: 'common'
+          totalCount: number
+          data: DataCenterBase[]
+      }
 
 const dataCenter = c.router({
     getAll: {
@@ -171,48 +178,7 @@ const dataCenter = c.router({
             502: c.type<{ message: string }>(),
         },
     },
-});
-
-const item = c.router({
-    getAll: {
-        method: 'GET',
-        path: '/empire-core/item/',
-        responses: {
-            200: c.type<any>(),
-            401: c.type<{ message: string }>(),
-            403: c.type<{ message: string }>(),
-            404: c.type<{ message: string }>(),
-            408: c.type<{ message: string }>(),
-            409: c.type<{ message: string }>(),
-            410: c.type<{ message: string }>(),
-            413: c.type<{ message: string }>(),
-            429: c.type<{ message: string }>(),
-            500: c.type<{ message: string }>(),
-            502: c.type<{ message: string }>(),
-        },
-        query: DataCenterPrismaQuerySchema,
-        summary: 'Get data',
-    },
-    getById: {
-        method: 'GET',
-        path: '/empire-core/item/:id/',
-        responses: {
-            200: z.string(),
-            401: c.type<{ message: string }>(),
-            403: c.type<{ message: string }>(),
-            404: c.type<{ message: string }>(),
-            408: c.type<{ message: string }>(),
-            409: c.type<{ message: string }>(),
-            410: c.type<{ message: string }>(),
-            413: c.type<{ message: string }>(),
-            429: c.type<{ message: string }>(),
-            500: c.type<{ message: string }>(),
-            502: c.type<{ message: string }>(),
-        },
-        query: DataCenterPrismaQuerySchema,
-        summary: 'Get data',
-    },
-});
+})
 
 const supplier = c.router({
     getAll: {
@@ -290,7 +256,7 @@ const supplier = c.router({
             502: c.type<{ message: string }>(),
         },
     },
-});
+})
 
 const contact = c.router({
     getAll: {
@@ -406,7 +372,7 @@ const contact = c.router({
         query: referenceSearchQuerySchema,
         summary: 'Get data',
     },
-});
+})
 
 const address = c.router({
     getAll: {
@@ -522,7 +488,67 @@ const address = c.router({
         query: referenceSearchQuerySchema,
         summary: 'Get data',
     },
-});
+})
+
+const item = c.router({
+    getAll: {
+        method: 'GET',
+        path: '/empire-core/item/',
+        responses: {
+            200: c.type<any>(),
+            401: c.type<{ message: string }>(),
+            403: c.type<{ message: string }>(),
+            404: c.type<{ message: string }>(),
+            408: c.type<{ message: string }>(),
+            409: c.type<{ message: string }>(),
+            410: c.type<{ message: string }>(),
+            413: c.type<{ message: string }>(),
+            429: c.type<{ message: string }>(),
+            500: c.type<{ message: string }>(),
+            502: c.type<{ message: string }>(),
+        },
+        query: DataCenterPrismaQuerySchema,
+        summary: 'Get data',
+    },
+    getById: {
+        method: 'GET',
+        path: '/empire-core/item/:id/',
+        responses: {
+            200: z.string(),
+            401: c.type<{ message: string }>(),
+            403: c.type<{ message: string }>(),
+            404: c.type<{ message: string }>(),
+            408: c.type<{ message: string }>(),
+            409: c.type<{ message: string }>(),
+            410: c.type<{ message: string }>(),
+            413: c.type<{ message: string }>(),
+            429: c.type<{ message: string }>(),
+            500: c.type<{ message: string }>(),
+            502: c.type<{ message: string }>(),
+        },
+        query: DataCenterPrismaQuerySchema,
+        summary: 'Get data',
+    },
+    create: {
+        method: 'POST',
+        path: '/empire-core/item/',
+        body: itemPostSchema,
+        summary: 'Create item data',
+        responses: {
+            201: c.type<Pick<ItemPost, 'id'>>(),
+            401: c.type<{ message: string }>(),
+            403: c.type<{ message: string }>(),
+            404: c.type<{ message: string }>(),
+            408: c.type<{ message: string }>(),
+            409: c.type<{ message: string }>(),
+            410: c.type<{ message: string }>(),
+            413: c.type<{ message: string }>(),
+            429: c.type<{ message: string }>(),
+            500: c.type<{ message: string }>(),
+            502: c.type<{ message: string }>(),
+        },
+    },
+})
 
 export const ApiContract = c.router({
     supplier,
@@ -530,7 +556,7 @@ export const ApiContract = c.router({
     item,
     contact,
     address,
-});
+})
 
 // function gateway() {
 //     const apiKey =
