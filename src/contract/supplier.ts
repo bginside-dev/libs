@@ -1,10 +1,10 @@
 import { InitContractInstance } from '.'
-import { DataCenterPrismaQuerySchema, supplierSchema } from '../schema'
-import { SupplierGetById, SupplierPostResponse, SupplierGetResponse } from '../types/supplier'
+import { DataCenterPrismaQuerySchema, SupplierPostSchema, SupplierUpdateSchema } from '../schema'
+import { SupplierPostResponse, SupplierGetResponse, SupplierUpdateResponse } from '../types/supplier'
 
 export const supplier = (c: InitContractInstance) =>
     c.router({
-        getAll: {
+        get: {
             method: 'GET',
             path: '/empire-core/supplier/',
             responses: {
@@ -20,25 +20,25 @@ export const supplier = (c: InitContractInstance) =>
             method: 'POST',
             path: '/empire-core/supplier/',
             responses: {
-                201: c.type<{ data: SupplierPostResponse }>(),
+                201: c.type<SupplierPostResponse>(),
                 400: c.type<{ message: string }>(),
                 401: c.type<{ message: string }>(),
                 500: c.type<{ message: string }>(),
             },
-            body: supplierSchema,
+            body: SupplierPostSchema,
             summary: 'Create data',
         },
         update: {
             method: 'PATCH',
             path: '/empire-core/supplier/:id',
             responses: {
-                201: c.type<{ data: SupplierPostResponse }>(),
+                201: c.type<SupplierUpdateResponse>(),
                 400: c.type<{ message: string }>(),
                 401: c.type<{ message: string }>(),
                 404: c.type<{ message: string }>(),
                 500: c.type<{ message: string }>(),
             },
-            body: supplierSchema,
+            body: SupplierUpdateSchema,
             summary: 'Update data',
         },
         getById: {
@@ -46,7 +46,7 @@ export const supplier = (c: InitContractInstance) =>
             path: '/empire-core/supplier/:id',
             summary: 'Delete data',
             responses: {
-                200: c.type<{ data: SupplierGetById }>(),
+                200: c.type<{ data: SupplierGetResponse }>(),
                 400: c.type<{ message: string }>(),
                 401: c.type<{ message: string }>(),
                 404: c.type<{ message: string }>(),
