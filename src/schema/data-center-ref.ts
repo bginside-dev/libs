@@ -1,11 +1,11 @@
 import { z } from 'zod'
-import { DataCenterBaseSchema } from './data-center-common'
+import { DataCenterBaseFormSchema } from './data-center-common'
 
-export const RefCategorySchema = DataCenterBaseSchema.extend({
+export const RefCategorySchema = DataCenterBaseFormSchema.extend({
     colorCode: z.string().optional(),
 })
 
-export const RefDiscountSchema = DataCenterBaseSchema.extend({
+export const RefDiscountSchema = DataCenterBaseFormSchema.extend({
     discRate: z.number().default(0).optional(),
     lessTax: z.boolean().default(false).optional(),
     senior: z.boolean().default(false).optional(),
@@ -14,16 +14,16 @@ export const RefDiscountSchema = DataCenterBaseSchema.extend({
     hide: z.boolean().default(false).optional(),
 })
 
-export const RefPaymentSchema = DataCenterBaseSchema.extend({
+export const RefPaymentSchema = DataCenterBaseFormSchema.extend({
     operator: z.number().default(0).optional(),
     hide: z.boolean().default(false).optional(),
 })
 
-export const RefTermsSchema = DataCenterBaseSchema.extend({
+export const RefTermsSchema = DataCenterBaseFormSchema.extend({
     days: z.number().default(0).optional(),
 })
 
-export const RefTaxTypeSchema = DataCenterBaseSchema.extend({
+export const RefTaxTypeSchema = DataCenterBaseFormSchema.extend({
     taxRate: z.number().default(0),
     taxGroup: z.number().default(0).optional(),
 })

@@ -1,5 +1,17 @@
 import { z } from 'zod'
-import { RefCategorySchema, RefDiscountSchema, RefPaymentSchema, RefTaxTypeSchema, RefTermsSchema } from '../schema'
+import {
+    DataCenterBaseFormSchema,
+    DataCenterDeleteSchema,
+    DataCenterPostSchema,
+    DataCenterPrismaQuerySchema,
+    DataCenterPutSchema,
+    RefCategorySchema,
+    RefDiscountSchema,
+    RefPaymentSchema,
+    RefTaxTypeSchema,
+    RefTermsSchema,
+    ValidatePostSchema,
+} from '../schema'
 import { Prettify } from '.'
 
 export const DATACENTER_TABLES = [
@@ -32,6 +44,14 @@ export const DataCenterEnum = z.enum([...DATACENTER_TABLES])
 
 export type DataCenterTables = (typeof DATACENTER_TABLES)[number] | (string & {})
 export type DataCenterUnion = z.infer<typeof DataCenterEnum>
+export type DataCenterPrismaQuery = z.infer<typeof DataCenterPrismaQuerySchema>
+export type ReferenceSearchQuery = z.infer<typeof ReferenceSearchQuerySchema>
+
+export type DataCenterBaseForm = z.infer<typeof DataCenterBaseFormSchema>
+export type DataCenterDelete = z.infer<typeof DataCenterDeleteSchema>
+export type DataCenterPost = z.infer<typeof DataCenterPostSchema>
+export type DataCenterPut = z.infer<typeof DataCenterPutSchema>
+export type ValidatePost = z.infer<typeof ValidatePostSchema>
 
 // !TODO:
 const apiKey =

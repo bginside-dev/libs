@@ -40,7 +40,7 @@ export const dataCenter = (c: InitContractInstance) =>
             method: 'PUT',
             path: '/',
             responses: {
-                201: c.type<any>(),
+                200: c.type<any>(),
                 400: c.type<{ message: string }>(),
                 401: c.type<{ message: string }>(),
                 404: c.type<{ message: string }>(),

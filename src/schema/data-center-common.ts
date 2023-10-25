@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const DataCenterBaseSchema = z.object({
+export const DataCenterBaseFormSchema = z.object({
     code: z.string().min(1, { message: 'Code is too short' }).max(30, { message: 'Code is too long.' }),
     name: z.string().min(1, { message: 'Name is too short ' }).max(50, { message: 'Name is too long' }),
     default: z.boolean().default(false),
@@ -9,7 +9,7 @@ export const DataCenterBaseSchema = z.object({
 
 export const DataCenterDeleteSchema = z.object({ key: z.string() })
 
-const PostPutDataCenterSchema = DataCenterBaseSchema.extend({ id: z.string() })
+const PostPutDataCenterSchema = DataCenterBaseFormSchema.extend({ id: z.string() })
 
 export const DataCenterPostSchema = z.object({ values: z.string().or(PostPutDataCenterSchema) })
 
