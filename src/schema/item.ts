@@ -1,7 +1,6 @@
 import { z } from 'zod'
 
-// TODO ID SHOULD NOT INCLUDE
-export const itemPostSchema = z.object({
+export const ItemFormSchema = z.object({
     id: z.string().min(1, { message: 'ID is required.' }).default('create'),
     code: z.string().min(1, { message: 'Code is required.' }).default(''),
     name: z.string().min(1, { message: 'Name is required.' }).default(''),
@@ -58,4 +57,6 @@ export const itemPostSchema = z.object({
     temp: z.string().nullish(), // ---> TEMPORARY SHOULD BE REMOVED. ITO YUNG MGA FIELDS NA AUTO COMPUTED SA FORM
 })
 
-export type ItemPost = z.infer<typeof itemPostSchema>
+export const ItemPostSchema = ItemFormSchema.omit({ id: true })
+export const ItemUpdateSchema = ItemFormSchema
+export const ItemDeleteSchema = z.object({ id: z.string() })

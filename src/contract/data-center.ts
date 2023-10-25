@@ -5,7 +5,7 @@ import {
     DataCenterPutSchema,
     ValidatePostSchema,
 } from '../schema'
-import { DataCenterGetResponse, dataCenterHeaderSchema } from '../types'
+import { DataCenterGetResponse, DataCenterHeaderSchema } from '../types'
 import { InitContractInstance } from '.'
 
 export const dataCenter = (c: InitContractInstance) =>
@@ -21,7 +21,7 @@ export const dataCenter = (c: InitContractInstance) =>
             },
             query: DataCenterPrismaQuerySchema,
             summary: 'Get data',
-            headers: dataCenterHeaderSchema,
+            headers: DataCenterHeaderSchema,
         },
         create: {
             method: 'POST',
@@ -34,7 +34,7 @@ export const dataCenter = (c: InitContractInstance) =>
             },
             body: DataCenterPostSchema,
             summary: 'Create data',
-            headers: dataCenterHeaderSchema,
+            headers: DataCenterHeaderSchema,
         },
         update: {
             method: 'PUT',
@@ -47,7 +47,7 @@ export const dataCenter = (c: InitContractInstance) =>
                 500: c.type<{ message: string }>(),
             },
             body: DataCenterPutSchema,
-            headers: dataCenterHeaderSchema,
+            headers: DataCenterHeaderSchema,
             summary: 'Update data',
             strictStatusCodes: true,
         },
@@ -55,7 +55,7 @@ export const dataCenter = (c: InitContractInstance) =>
             method: 'DELETE',
             path: '/',
             body: DataCenterDeleteSchema,
-            headers: dataCenterHeaderSchema,
+            headers: DataCenterHeaderSchema,
             summary: 'Delete data',
             responses: {
                 201: c.type<any>(),

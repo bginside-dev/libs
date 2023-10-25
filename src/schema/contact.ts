@@ -1,18 +1,18 @@
 import { z } from 'zod'
-import { v4 as uuidv4 } from 'uuid'
-export const MasterContactEmailSchema = z.object({
+
+export const ContactEmailFormSchema = z.object({
     id: z.string(),
     email: z.string(),
     isPrimary: z.boolean().default(false),
 })
 
-export const MasterContactPhoneSchema = z.object({
+export const ContactPhoneFormSchema = z.object({
     id: z.string(),
     phone: z.string(),
     isPrimary: z.boolean().default(false),
 })
 
-export const contactSchema = z.object({
+export const ContactFormSchema = z.object({
     id: z.string().min(1, { message: 'ID is required.' }),
     firstName: z.string().min(1, { message: 'First Name is required.' }).default(''),
     middleName: z.string().nullish(),
@@ -23,20 +23,10 @@ export const contactSchema = z.object({
     genderId: z.string().nullish(),
     companyName: z.string().nullish(),
     address: z.string().nullish(),
-    email: z.array(MasterContactEmailSchema).optional(),
-    phoneNo: z.array(MasterContactPhoneSchema).optional(),
+    email: z.array(ContactEmailFormSchema).optional(),
+    phoneNo: z.array(ContactPhoneFormSchema).optional(),
 })
 
-export const ContactDeleteSchema = z.object({
-    key: z.string(),
-})
-
-export const MasterContactPutSchema = z.object({
-    key: z.string().default(uuidv4()),
-    values: contactSchema,
-})
-
-export type ContactDelete = z.infer<typeof ContactDeleteSchema>
-export type MasterContactPut = z.infer<typeof MasterContactPutSchema>
-
-export const ContactPostSchema = contactSchema.omit({ id: true })
+export const ContactPostSchema = ContactFormSchema.omit({ id: true })
+export const ContactUpdateSchema = ContactFormSchema
+export const ContactDeleteSchema = z.object({ id: z.string() })

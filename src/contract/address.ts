@@ -1,5 +1,5 @@
 import { InitContractInstance } from '.'
-import { referenceSearchQuerySchema } from '../types'
+import { ReferenceSearchQuerySchema } from '../types'
 import { ContactDeleteSchema, DataCenterPrismaQuerySchema, addressPostDtoSchema } from '../schema'
 import { AddressAsRef, AddressById, AddressGetResponse, AddressResponse } from '../types/address'
 
@@ -76,7 +76,7 @@ export const address = (c: InitContractInstance) =>
                 401: c.type<{ message: string }>(),
                 500: c.type<{ message: string }>(),
             },
-            query: referenceSearchQuerySchema,
+            query: ReferenceSearchQuerySchema,
             summary: 'Get data',
         },
     })

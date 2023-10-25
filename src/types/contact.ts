@@ -1,4 +1,14 @@
-export type ContactResponse = {
+import { z } from 'zod'
+import { ContactDeleteSchema, ContactFormSchema } from '../schema'
+
+export type ContactForm = z.infer<typeof ContactFormSchema>
+export type ContactDeleteBody = z.infer<typeof ContactDeleteSchema>
+
+export type ContactPostResponse = Pick<ContactForm, 'id'>
+export type ContactUpdateResponse = { message: string }
+export type ContactDeleteResponse = { message: string }
+
+export type ContactGetResponse = {
     salutation: {
         code: string
         id: string
@@ -15,72 +25,6 @@ export type ContactResponse = {
         code: string
         id: string
         active: boolean
-        name: string
-    } | null
-} & {
-    businessCode: string
-    id: string
-    firstName: string
-    middleName: string | null
-    lastName: string
-    active: boolean
-    salutationId: string | null
-    designationId: string | null
-    genderId: string | null
-    companyName: string | null
-    address: string | null
-    createdAt: Date
-    updatedAt: Date
-}
-
-export type ContactPostResponse = {
-    email: {
-        id: string
-        email: string
-        isPrimary: boolean
-        contactId: string
-    }[]
-    phoneNo: {
-        id: string
-        phone: string
-        isPrimary: boolean
-        contactId: string
-    }[]
-} & {
-    businessCode: string
-    id: string
-    firstName: string
-    middleName: string | null
-    lastName: string
-    active: boolean
-    salutationId: string | null
-    designationId: string | null
-    genderId: string | null
-    companyName: string | null
-    address: string | null
-    createdAt: Date
-    updatedAt: Date
-}
-
-export type ContactPutResponse = Omit<ContactPostResponse, 'phoneNo' | 'email'>
-
-export type ContactGetById = {
-    salutation: {
-        id: string
-        active: boolean
-        code: string
-        name: string
-    } | null
-    designation: {
-        id: string
-        active: boolean
-        code: string
-        name: string
-    } | null
-    gender: {
-        id: string
-        active: boolean
-        code: string
         name: string
     } | null
 } & {

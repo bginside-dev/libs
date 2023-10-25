@@ -36,14 +36,14 @@ export type DataCenterUnion = z.infer<typeof DataCenterEnum>
 // !TODO:
 const apiKey =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJiZ0xvY2F0aW9uQ29kZSI6ImJnTG9jbWtkbzMiLCJiZ0J1c2luZXNzQ29kZSI6ImJnQnVzVUpWcE8iLCJleHBpcmVzSW4iOiIxMGQiLCJpYXQiOjE2OTM5MDE1NDIsImV4cCI6MTY5NDc2NTU0Mn0.5m3Pv7p-ArTY8oKmAvAKY9amLfEEM0wUKGAIsG_zDkU'
-const baseHeaderSchema = z.object({
+const BaseHeaderSchema = z.object({
     Authorization: z.string().default(`Bearer ${apiKey}`),
     'x-business-code': z.string(),
 })
 
-export const dataCenterHeaderSchema = baseHeaderSchema.merge(z.object({ path: z.enum([...DATACENTER_TABLES]) }))
+export const DataCenterHeaderSchema = BaseHeaderSchema.merge(z.object({ path: z.enum([...DATACENTER_TABLES]) }))
 
-export const referenceSearchQuerySchema = z.object({ search: z.string() })
+export const ReferenceSearchQuerySchema = z.object({ search: z.string() })
 
 export type DataCenterBaseResponse = {
     businessCode: string
