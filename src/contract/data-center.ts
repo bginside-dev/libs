@@ -10,7 +10,7 @@ import { InitContractInstance } from '.'
 
 export const dataCenter = (c: InitContractInstance) =>
     c.router({
-        getAll: {
+        get: {
             method: 'GET',
             path: '/',
             responses: {
