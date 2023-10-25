@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const addressSchema = z.object({
+export const AddressFormSchema = z.object({
     id: z.string().min(1, { message: 'ID is required.' }).default('create'),
     active: z.boolean().default(true),
     title: z.string().min(1, { message: 'Address Title is required.' }).default(''),
@@ -15,7 +15,9 @@ export const addressSchema = z.object({
     contactNo: z.string().nullish(),
     faxNo: z.string().nullish(),
     billingAdd: z.boolean().default(false),
-    shippingAdd: z.boolean().default(false)
-  })
+    shippingAdd: z.boolean().default(false),
+})
 
-  export const addressPostDtoSchema = addressSchema.omit({ id: true });
+export const AddressPostSchema = AddressFormSchema.omit({ id: true })
+export const AddressUpdateSchema = AddressFormSchema
+export const AddressDeleteSchema = z.object({ id: z.string() })
