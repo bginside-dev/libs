@@ -11,7 +11,7 @@ import {
 
 export const contact = (c: InitContractInstance) =>
     c.router({
-        getAll: {
+        get: {
             method: 'GET',
             path: '/empire-core/contact/',
             responses: {
