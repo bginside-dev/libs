@@ -1,4 +1,4 @@
-export type SupplierResponse = {
+export type SupplierGetResponse = {
     group: {
         code: string
         id: string
@@ -38,7 +38,7 @@ export type SupplierResponse = {
     updatedAt: Date
 }
 
-export type SupplierPostResponse = Omit<SupplierResponse, 'group' | 'class' | 'contact'>
+export type SupplierPostResponse = Omit<SupplierGetResponse, 'group' | 'class' | 'contact'>
 
 export type SupplierGetById = {
     group: {

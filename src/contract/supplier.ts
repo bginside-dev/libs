@@ -1,6 +1,6 @@
 import { InitContractInstance } from '.'
 import { DataCenterPrismaQuerySchema, supplierSchema } from '../schema'
-import { SupplierGetById, SupplierPostResponse, SupplierResponse } from '../types/supplier'
+import { SupplierGetById, SupplierPostResponse, SupplierGetResponse } from '../types/supplier'
 
 export const supplier = (c: InitContractInstance) =>
     c.router({
@@ -8,7 +8,7 @@ export const supplier = (c: InitContractInstance) =>
             method: 'GET',
             path: '/empire-core/supplier/',
             responses: {
-                200: c.type<{ data: SupplierResponse[] }>(),
+                200: c.type<{ data: SupplierGetResponse[] }>(),
                 400: c.type<{ message: string }>(),
                 401: c.type<{ message: string }>(),
                 500: c.type<{ message: string }>(),
